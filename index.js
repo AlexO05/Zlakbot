@@ -1,12 +1,12 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const commands = require('./commands.js'); // import your commands
-const Leveling = require('discord-leveling-super')
+
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
 
-const token = process.env.TOKEN; 
 
+const token = process.env.TOKEN; 
 const PREFIX = "!"; // all commands start with !
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
@@ -16,26 +16,9 @@ client.once('ready', () => {
   } else {
     console.log('Channel not found!');
   }
-
-
-
 });
-client.on('messageCreate', async (message) => {
+client.on('messageCreate', (message) => {
   if (message.author.bot) return;
-
-
-    // Add XP for every user
-    const randomXP = Math.floor(Math.random() * 10) + 5; // Random XP between 5-14
-    await Levels.appendXp(message.author.id, message.guild.id, randomXP);
-
-    // Optional: you can check for level-up
-    const user = await Levels.fetch(message.author.id, message.guild.id);
-    if (user) {
-        if (user.levelUp) { // returns true if they leveled up
-            message.channel.send(`${message.author}, congratulations! You reached level ${user.level}! 🎉`);
-        }
-    }
-
   if (!message.content.startsWith(PREFIX)) return;
 
   const args = message.content.slice(PREFIX.length).trim().split(/ +/);
