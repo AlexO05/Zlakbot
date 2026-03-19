@@ -47,5 +47,5 @@ client.on('messageCreate', async (message) => {
 
 // 👇 OCH HÄRsa
 connectDB().then(() => {
-  client.login(token);
+  client.login(process.env.TOKEN);
 });

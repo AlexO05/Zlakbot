@@ -220,7 +220,7 @@ explode: {
 
 
 zlakbot: {
-     aliases: ["zlakbot", "ai"],
+     aliases: ["zlakbot", "zlakpain", "zlakai", "zlak"],
 
     async execute(message, args) {
          console.log("AI command triggered!"); // 🔹 debug
@@ -234,7 +234,7 @@ zlakbot: {
 
       // Get last 10 facts from MongoDB
         const userFacts = await getUserFacts(message.author.id, 10);
-        const globalFacts = await getLastFacts(50); // all messages, AI included 
+        const globalFacts = await getLastFacts(50); // all messages, AI included a
 
         const memoryText = `
         Previous messages by ${message.author.username}:
