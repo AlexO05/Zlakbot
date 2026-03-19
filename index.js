@@ -1,5 +1,7 @@
+
 const { Client, GatewayIntentBits } = require('discord.js');
 const commands = require('./commands.js'); // import your commands
+const { connectDB } = require("./db.js");
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
@@ -17,18 +19,26 @@ client.once('ready', () => {
     console.log('Channel not found!');
   }
 });
-client.on('messageCreate', (message) => {
+client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (!message.content.startsWith(PREFIX)) return;
 
   const args = message.content.slice(PREFIX.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
 
-  // Find the command by name or alias
   const command = Object.values(commands).find(cmd => cmd.aliases.includes(commandName));
   
+   
+
+
+
   if (command) {
-    command.execute(message);
+    try {
+      await command.execute(message, args); // 👈 await here
+    } catch (error) {
+      console.error(error);
+      message.reply("Something went wrong executing that command.");
+    }
   }
 });
 
@@ -36,4 +46,6 @@ client.on('messageCreate', (message) => {
 
 
 // 👇 OCH HÄRsa
-client.login(token);
+connectDB().then(() => {
+  client.login(token);
+});

@@ -23,6 +23,7 @@
     "discord-leveling-super": "^1.0.13",
     "discord-xp": "^1.1.16",
     "discord.js": "^14.25.1",
+    "mongodb": "^7.1.0",
     "sequelize": "^6.37.8",
     "sqlite3": "^6.0.1"
   }

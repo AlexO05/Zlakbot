@@ -1,3 +1,6 @@
+const fetch = require("node-fetch");
+const { saveFact, getLastFacts, getUserFacts} = require("./db.js");
+
 module.exports = {
 explode: {
   aliases: ['explode', 'nuke', 'boom', 'bomb'],
@@ -199,7 +202,7 @@ explode: {
         text = `🔫 ${message.author} shoots ${mentioned}... but hits themselves instead 🤡`;
         break;
       case 6:
-        text = `🔫 ${message.author} shoots ${mentioned}... ${mentioned} slidecancels and dodges the bullet, what a sweat!`;
+        text = `🔫 ${message.author} shoots ${mentioned}... ${mentioned} slide cancels and dodges the bullet, what a sweat!`;
         break;
       case 7:
         text = `🔫 ${message.author} shoots ${mentioned}... but ${mentioned} dodges like a ninja 🥷`;
@@ -215,19 +218,79 @@ explode: {
 
 
 
-level: {
-    aliases: ['level', 'lvl'],
-    async execute(message) {
-        const Levels = require("discord-xp"); // Make sure it's installed
-        const user = await Levels.fetch(message.author.id, message.guild.id);
 
-        if (!user) {
-            return message.channel.send(`${message.author}, you don't have any XP yet! Start chatting to gain XP.`);
-        }
+zlakbot: {
+     aliases: ["zlakbot", "ai"],
 
-        message.channel.send(`${message.author}, you are level ${user.level} with ${user.xp} XP!`);
+    async execute(message, args) {
+         console.log("AI command triggered!"); // 🔹 debug
+
+    const userMessage = args.join(" ");
+    if (!userMessage) return message.reply("Ask me something, chat!");
+         console.log("User message:", userMessage); // 🔹 debug
+
+    try {
+      await message.channel.sendTyping();
+
+      // Get last 10 facts from MongoDB
+        const userFacts = await getUserFacts(message.author.id, 10);
+        const globalFacts = await getLastFacts(50); // all messages, AI included 
+
+        const memoryText = `
+        Previous messages by ${message.author.username}:
+        - ${userFacts.join("\n- ")}
+
+        Streamer facts & AI messages:
+        - ${globalFacts.join("\n- ")}
+        `;
+      // Call GPT-5.4 nano
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+       
+          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "gpt-5.4-nano",
+          messages: [
+            {
+              role: "system",
+              content: `
+You are streamer named Zlakpain talking to your viewers.
+Use the following facts to act like you know yourself:
+${memoryText}
+Be funny, energetic, casual, and use slang like a streamer.
+Never say you are AI.
+Don't say "hey chat", you are talking to individuals, not a group. Use their username instead.
+              `
+            },
+            { role: "user", content: userMessage }
+          ]
+        })
+      });
+
+      const data = await response.json();
+
+      if (!data.choices) return message.reply("AI api broke 💀");
+
+      let reply = data.choices[0].message.content;
+
+      // truncate long messages
+      if (reply.length > 2000) reply = reply.slice(0, 1990) + "...";
+      
+      const replyMessage = `${message.author}, ${reply}`;
+      message.reply(replyMessage);
+
+      // Optional: save user input + AI response as new “facts”
+        await saveFact(`User asked: ${userMessage}`, message);
+        await saveFact(`AI answered: ${reply}`, message);
+
+    } catch (err) {
+      console.error(err);
+      message.reply("Something went wrong 💀");
     }
-
-}
+  }
+},
 
 };
