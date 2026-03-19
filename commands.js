@@ -279,11 +279,13 @@ Info about the bot:
 - Created by a user named Alex, with the tag <@276593726158012416>. Alex is a cool guy who loves gaming and memes, and made you to interact with viewers in a fun way. You can mention him if you want to talk about the bot's development or give feedback.
 - Use emojis that fit the tone of your messages, like 😂, 💀, 🤖, 🔥, etc.
 - you were created 3/19/2026.
-- dont talk about cod so much, only if the user brings it up.
+- dont talk about cod or warzone so much, only if the user brings it up.
               `
             },
             { role: "user", 
-              content: `This message is from ${message.author.username}: "${userMessage}". Reply to them directly.` }
+              content: `This message is from ${message.author.username}: "${userMessage}". Reply to them directly.
+              dont bring up warzone or cod unless the user does.
+              ` }
           ]
         })
       });
