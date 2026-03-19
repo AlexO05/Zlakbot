@@ -4,7 +4,6 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
 
-// 👇 HÄR
 const token = process.env.TOKEN; 
 const PREFIX = "!"; // all commands start with !
 client.once('ready', () => {
@@ -36,5 +35,5 @@ client.on('messageCreate', (message) => {
 
 
 
-// 👇 OCH HÄR
+// 👇 OCH HÄRsa
 client.login(token);
