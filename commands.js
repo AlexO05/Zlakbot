@@ -288,7 +288,8 @@ Info about the streamer:
       if (reply.length > 2000) reply = reply.slice(0, 1990) + "...";
       
 
-      message.reply(reply);
+      const replyMessage = `<@${message.author.id}>, ${reply}`;
+      message.reply(replyMessage);
 
       // Optional: save user input + AI response as new “facts”
         await saveFact(`User asked: ${userMessage}`, message);
