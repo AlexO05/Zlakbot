@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const commands = require('./commands.js'); // import your commands
-const leveling = require('./app.js');
+
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
