@@ -272,7 +272,8 @@ Info about the streamer:
 - Plays only Call of Duty, especially Warzone.
               `
             },
-            { role: "user", content: userMessage }
+            { role: "user", 
+              content: `This message is from ${message.author.username}: "${userMessage}". Reply to them directly.` }
           ]
         })
       });
@@ -286,8 +287,8 @@ Info about the streamer:
       // truncate long messages
       if (reply.length > 2000) reply = reply.slice(0, 1990) + "...";
       
-      const replyMessage = `${message.author}, ${reply}`;
-      message.reply(replyMessage);
+
+      message.reply(reply);
 
       // Optional: save user input + AI response as new “facts”
         await saveFact(`User asked: ${userMessage}`, message);
