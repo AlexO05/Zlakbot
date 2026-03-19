@@ -1,13 +1,12 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const commands = require('./commands.js'); // import your commands
-const Levels = require("discord-xp"); // <-- Add this here at the top
+const Leveling = require('discord-leveling-super')
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
 
-
 const token = process.env.TOKEN; 
-const mongoURL = process.env.MONGO_URL;
+
 const PREFIX = "!"; // all commands start with !
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
@@ -18,7 +17,7 @@ client.once('ready', () => {
     console.log('Channel not found!');
   }
 
-Levels.setURL(mongoURL);
+
 
 });
 client.on('messageCreate', async (message) => {
