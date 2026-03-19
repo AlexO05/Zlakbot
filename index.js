@@ -8,6 +8,7 @@ const client = new Client({
 });
 
 
+
 const token = process.env.TOKEN; 
 const PREFIX = "!"; // all commands start with !
 client.once('ready', () => {
@@ -47,5 +48,5 @@ client.on('messageCreate', async (message) => {
 
 // 👇 OCH HÄRsa
 connectDB().then(() => {
-  client.login(process.env.TOKEN);
+  client.login(token);
 });
