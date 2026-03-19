@@ -5,13 +5,14 @@ const client = new Client({
 });
 
 // 👇 HÄR
-const token = process.env.TOKEN;
+const token = 'MTQ4NDEzNTExMjQxMTk3MTY5Ng.Ga9Lj8.ncd-qtoRv-27gs8q_3jk9r5d9bFk5HAOKHpJgI'; // only for local testing
+//const token = process.env.TOKEN;
 const PREFIX = "!"; // all commands start with !
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
     const channel = client.channels.cache.get('1222254603840786484');
   if (channel) {
-    //channel.send('Chill, im fixing atm');
+    //channel.send('i will'); 
   } else {
     console.log('Channel not found!');
   }
