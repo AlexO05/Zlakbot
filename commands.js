@@ -13,7 +13,7 @@ module.exports = {
         const damage = Math.floor(Math.random() * 1000);
         const msg1 = args[1] || '';
         const msg2 = args[2] || '';
-        message.channel.send(`${message.author} EXPLODES 💥 ${message[1]} ${message[2]} 💥\nDamage dealt: ${damage}\nhttps://tenor.com/view/explosion-explode-clouds-of-smoke-gif-17216934`);
+        message.channel.send(`${message.author} EXPLODES 💥 ${msg1} ${msg2} 💥\nDamage dealt: ${damage}\nhttps://tenor.com/view/explosion-explode-clouds-of-smoke-gif-17216934`);
       }
     },
   },
