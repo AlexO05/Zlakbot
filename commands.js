@@ -7,15 +7,13 @@ module.exports = {
       const mentioned = message.mentions.users.first();
       const args = message.content.split(' ').slice(1);
 
-      if (!mentioned) return message.channel.send("You need to mention someone!");
-
       if (mentioned.id === '1484135112411971696') {
         message.channel.send("What have I done to you bro?");
       } else {
         const damage = Math.floor(Math.random() * 1000);
         const msg1 = args[1] || '';
         const msg2 = args[2] || '';
-        message.channel.send(`${message.author} EXPLODES 💥 ${message} 💥\nDamage dealt: ${damage}\nhttps://tenor.com/view/explosion-explode-clouds-of-smoke-gif-17216934`);
+        message.channel.send(`${message.author} EXPLODES 💥 ${message[1]} ${message[2]} 💥\nDamage dealt: ${damage}\nhttps://tenor.com/view/explosion-explode-clouds-of-smoke-gif-17216934`);
       }
     },
   },
