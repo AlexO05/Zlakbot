@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const commands = require('./commands.js'); // import your commands
+const Levels = require("discord-xp"); // <-- Add this here at the top
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
@@ -15,7 +16,7 @@ client.once('ready', () => {
   } else {
     console.log('Channel not found!');
   }
-
+Levels.setURL("mongodb+srv://LexTV:DISCORDALEX123@cluster0.mitpovs.mongodb.net/?appName=Cluster0");
 
 });
 client.on('messageCreate', (message) => {

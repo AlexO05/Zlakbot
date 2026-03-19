@@ -211,6 +211,23 @@ explode: {
 
     message.channel.send(text);
   }
+},
+
+
+
+level: {
+    aliases: ['level', 'lvl'],
+    async execute(message) {
+        const Levels = require("discord-xp"); // Make sure it's installed
+        const user = await Levels.fetch(message.author.id, message.guild.id);
+
+        if (!user) {
+            return message.channel.send(`${message.author}, you don't have any XP yet! Start chatting to gain XP.`);
+        }
+
+        message.channel.send(`${message.author}, you are level ${user.level} with ${user.xp} XP!`);
+    }
+
 }
 
 };
