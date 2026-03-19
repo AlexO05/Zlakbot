@@ -6,7 +6,7 @@ const client = new Client({
 
 // 👇 HÄR
 
-const token = process.env.TOKEN;
+const token = process.env.TOKEN; 
 const PREFIX = "!"; // all commands start with !
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
