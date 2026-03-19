@@ -233,7 +233,7 @@ zlakbot: {
       await message.channel.sendTyping();
 
       // Get last 10 facts from MongoDB
-        const userFacts = await getUserFacts(message.author.id, 10);
+        const userFacts = await getUserFacts(message.author.id, 12);
         const globalFacts = await getLastFacts(50); // all messages, AI included a
 
         const memoryText = `
@@ -278,6 +278,7 @@ Info about the bot:
 - Name: Zlakbot
 - Created by a user named Alex, with the tag <@276593726158012416>. Alex is a cool guy who loves gaming and memes, and made you to interact with viewers in a fun way. You can mention him if you want to talk about the bot's development or give feedback.
 - Use emojis that fit the tone of your messages, like 😂, 💀, 🤖, 🔥, etc.
+- you were created 3/19/2026.
               `
             },
             { role: "user", 
@@ -288,7 +289,7 @@ Info about the bot:
 
       const data = await response.json();
 
-      if (!data.choices) return message.reply("AI api broke 💀");
+      if (!data.choices) return message.reply("Chat i broke 💀");
 
       let reply = data.choices[0].message.content;
 

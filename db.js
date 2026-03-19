@@ -32,7 +32,7 @@ async function saveFact(fact, message = null) {
   return result;
 }
 
-async function getLastFacts(limit = 10) {
+async function getLastFacts(limit = 20) {
   const docs = await memoryCollection
     .find()
     .sort({ timestamp: -1 })
@@ -41,7 +41,7 @@ async function getLastFacts(limit = 10) {
   return docs.map(doc => doc.fact);
 }
 
-async function getUserFacts(userId, limit = 10) {
+async function getUserFacts(userId, limit = 20) {
   const docs = await memoryCollection
     .find({ userId })
     .sort({ timestamp: -1 })
