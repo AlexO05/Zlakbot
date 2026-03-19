@@ -5,8 +5,8 @@ const client = new Client({
 });
 
 // 👇 HÄR
-const token = 'MTQ4NDEzNTExMjQxMTk3MTY5Ng.Ga9Lj8.ncd-qtoRv-27gs8q_3jk9r5d9bFk5HAOKHpJgI'; // only for local testing
-//const token = process.env.TOKEN;
+
+const token = process.env.TOKEN;
 const PREFIX = "!"; // all commands start with !
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
