@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const commands = require('./commands.js'); // import your commands
-
+const leveling = require('./app.js');
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
@@ -12,7 +12,7 @@ client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
     const channel = client.channels.cache.get('1222254603840786484');
   if (channel) {
-    //channel.send('i will'); 
+    //channel.send('Nah i love you grinch ❤️'); 
   } else {
     console.log('Channel not found!');
   }
