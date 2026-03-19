@@ -7,6 +7,7 @@ const client = new Client({
 
 
 const token = process.env.TOKEN; 
+const mongoURL = process.env.MONGO_URL;
 const PREFIX = "!"; // all commands start with !
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
@@ -16,7 +17,8 @@ client.once('ready', () => {
   } else {
     console.log('Channel not found!');
   }
-Levels.setURL(process.env.MONGO_URL);
+
+Levels.setURL(mongoURL);
 
 });
 client.on('messageCreate', async (message) => {
