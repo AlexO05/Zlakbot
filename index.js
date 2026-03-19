@@ -25,11 +25,14 @@ client.on('messageCreate', (message) => {
   const args = message.content.slice(PREFIX.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
 
-  // Check if command exists in commands.js
-  if (commands[commandName]) {
-    commands[commandName](message);
+  // Find the command by name or alias
+  const command = Object.values(commands).find(cmd => cmd.aliases.includes(commandName));
+  
+  if (command) {
+    command.execute(message);
   }
 });
+
 
 
 
