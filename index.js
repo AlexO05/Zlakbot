@@ -16,7 +16,7 @@ client.once('ready', () => {
   } else {
     console.log('Channel not found!');
   }
-Levels.setURL("mongodb+srv://LexTV:DISCORDALEX123@cluster0.mitpovs.mongodb.net/discord-xp?retryWrites=true&w=majority");
+Levels.setURL(process.env.MONGO_URL);
 
 });
 client.on('messageCreate', async (message) => {
