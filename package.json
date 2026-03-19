@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/AlexO05/Zlakbot#readme",
   "dependencies": {
+    "discord-xp": "^1.1.16",
     "discord.js": "^14.25.1"
   }
-  
 }
