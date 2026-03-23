@@ -252,7 +252,7 @@ zlakbot: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "gpt-5.4-mini",
+          model: "gpt-5.4-nano",
           messages: [
             {
               role: "system",
